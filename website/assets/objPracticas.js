@@ -32,24 +32,3 @@ let fran = new Developer('Francisco', 'Sarría', 38, 'programador JS', 'España'
     agus = new Personas('Agus', 'Sarría', 39),
     elena = new Personas('Elena', 'Herrera', 8)
 
-
-
-//  Ejercicio de asincronismo
-
-const URL_API_CHARAC = 'https://rickandmortyapi.com/api/character/'
-
-
-function Promesa (){
-    return new Promise((resolve, reject) => {
-        let req = new XMLHttpRequest()
-        req.open('GET', URL_API_CHARAC, true)
-        req.onreadystatechange = function(evento){
-            if(req.readyState === 4){
-                if(req.status === 200){
-
-                }
-            }
-        }
-
-    })
-}
