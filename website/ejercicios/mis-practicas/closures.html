@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closures</title>
+</head>
+<body>
+    
+    <script>
+        function counter(n){
+            let count = n
+
+            return {
+                agregar: function(){
+                    count = count + 1
+                },
+                quitar : function(){
+                    count =  count - 1
+                },
+                resultado : function(){
+                    console.log(count)
+                },
+            }
+        }
+
+        const instancia = counter(7)
+        instancia.agregar()
+        instancia.agregar()
+        instancia.agregar()
+        instancia.agregar()
+        console.log(instancia.resultado())
+    </script>
+</body>
+</html>

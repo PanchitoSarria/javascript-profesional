@@ -1,28 +1,18 @@
 function MediaPlayer(config){
-    this.media = config.el
-    this.plugins = config.plugins || []
-
-    this._initPlugins()
+  this.media = config.el
+  this.plugins = config.plugins || []
 }
-MediaPlayer.prototype._initPlugins = function(){
-    this.plugins.forEach(plugin => {
-        plugin.run(this)
-    })
+MediaPlayer.prototype.play = function(){
+  this.media.play()
 }
-MediaPlayer.prototype.mute = function(){
-    this.media.muted = true
+MediaPlayer.prototype.pause = function(){
+  this.media.pause()
 }
-MediaPlayer.prototype.playVideo = function(){
-    this.media.play()
-}
-MediaPlayer.prototype.pauseVideo = function(){
-    this.media.pause()
-}
-MediaPlayer.prototype.tooglePlayPause = function(){
+MediaPlayer.prototype.togglePlay = function(){
   if(this.media.paused){
-    this.playVideo()
+      this.play()
   } else {
-    this.pauseVideo()
+      this.pause()
   }
 }
 
