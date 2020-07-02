@@ -36,6 +36,7 @@
         const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}`;
         const response = await fetch(url);
         const data = await response.json();
+        console.log(data)
         return data.results;
       }
 
@@ -70,6 +71,8 @@
         });
       }
 
+      
+
       async function getTopMoviesInSequence() {
         const ids = await getTopMoviesIds();
         const movies = [];
@@ -98,6 +101,8 @@
         const movie = await Promise.race(moviePromises);
         return movie;
       }
+
+
 
       document.getElementById('sequence').onclick = async function() {
         const movies = await getTopMoviesInSequence();

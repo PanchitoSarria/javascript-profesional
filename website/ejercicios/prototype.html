@@ -129,6 +129,123 @@
 
       const link = new Hero('Link');
       link.saludar();
+
+
+
+
+    // Shape - superclase
+    function Shape() {
+      this.x = 0;
+      this.y = 0;
+    }
+    
+    // método de la superclase
+    Shape.prototype.move = function(x, y) {
+        this.x += x;
+        this.y += y;
+        console.info("Shape moved.");
+    };
+    Shape.prototype.saludo = function(){
+      console.log('saludo con shape')
+    }
+    
+    // Rectangle - subclase
+    function Rectangle() {
+      Shape.call(this); // llama al contructor de la superclase.
+    }
+    
+    // subclase extiende superclase
+    Rectangle.prototype = Object.create(Shape.prototype);
+    Rectangle.prototype.constructor = Rectangle;
+    Rectangle.prototype.saludo = function(){
+      console.log('saludo rectangulo')
+    }
+
+    function OtroProto(){}
+    OtroProto.prototype.funcProto = function(){
+      console.log('Metodo de OtroProto')
+    }
+
+    function Circulo(prop1, prop2){
+      this.prop1 = prop1
+      this.prop2 = prop2
+      Shape.call(this)
+      Rectangle.call(this)
+      OtroProto.call(this)
+    }
+
+    Circulo.prototype = Object.create(Rectangle.prototype)
+    Object.assign(Circulo.prototype, OtroProto.prototype)
+
+    const circl = new Circulo(3, 3)
+    
+    var rect = new Rectangle();
+    
+    // console.log('¿Es rect una instancia de Rectangle?',
+    //   rect instanceof Rectangle); // true
+    // console.log('¿Es rect una instancia de Shape?',
+    //   rect instanceof Shape); // true
+    // rect.move(1, 1); // Imprime, 'Shape moved.'
+
+    // console.log('¿Es circl una instancia de Rectangle?',
+    //   circl instanceof Rectangle); // true
+    // console.log('¿Es circl una instancia de Shape?',
+    // circl instanceof Shape); // true
+    // console.log('¿Es circl una instancia de Circulo?',
+    // circl instanceof Circulo); // true 
+    // console.log('¿Es circl una instancia de OtroProto?',
+    // circl instanceof OtroProto); // true 
+    // rect.move(1, 1); // Imprime, 'Shape moved.'
+
+
+    const objetoLiteral = {
+      prop1: 'Propiedad 1',
+      prop2: 'Propiedad 2'
+    }
+
+    const objetoNew = new Object()
+    objetoNew.prop1 = 'PropNewObj 1'
+    objetoNew.prop2 = 'PropNewObj 2'
+
+
+    const myCar = new Object()
+    var propertyName = 'make';
+    myCar[propertyName] = 'Ford';
+
+    function CreaObjeto(nombre, apellido){
+      this.nombre = nombre
+      this.apellido = apellido
+    }
+
+    const crearObjNew = new CreaObjeto('Fran', 'Sarría')
+    const crearObjcreate = Object.create(crearObjNew)
+    // crearObjcreate.nombre = 'Pupi'
+
+
+
+    function Car(make, model, year, owner) {
+      this.make = make;
+      this.model = model;
+      this.year = year;
+      this.owner = owner;
+      this.displayCar = displayCar;
+    }
+
+    function displayCar() {
+      var result = `A Beautiful ${this.year} ${this.make} ${this.model}`;
+      console.log(result);
+    }
+
+    var car1 = new Car('Eagle', 'Talon TSi', 1993);
+    var car2 = new Car('Nissan', '300ZX', 1992);
+
+
+    function f2(){
+  "use strict"; // consultar modo estricto
+  return this;
+}
+
+
     </script>
   </body>
 </html>

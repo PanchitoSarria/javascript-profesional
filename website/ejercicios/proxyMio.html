@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proxy</title>
+</head>
+<body>
+
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+    
+    <script>
+        const obj = {
+            nombre: 'Fran',
+            apellido: 'Sarría'
+        }
+
+        const handler = {
+            // get(target, prop){
+            //     if(target.prop !== 'number'){
+            //         console.log('esto es un string')
+            //     }
+            //     return prop
+            // }
+
+            // get: (target, prop) => {
+            //     if(prop in target){
+            //         console.log(target[prop], `la propiedad ${prop} es parte del objeto`)
+            //         return target[prop]
+            //     } else {
+            //         console.log(`la propiedad ${prop} no es parte del objeto`)
+            //     }
+            // },
+
+            get(target, prop) {
+                if(prop in target){
+                    console.log(target[prop], `la propiedad ${prop} es parte del objeto`)
+                    return target[prop]
+                } else {
+                    console.log(`la propiedad ${prop} no es parte del objeto`)
+                }
+            },
+
+            set: (target, prop, value) => {
+                if(prop in target){
+                    console.log(value)
+                    target[prop] = value
+                } else {
+                    console.log(`${prop} no es una propiedad válida`)
+                }
+                return prop
+            }
+        }
+
+        const p = new Proxy(obj, handler)
+        p.age = 39
+        p.nombre = 'Agus'
+
+
+
+
+        const hndlr = {
+            set: (target, objectKey, value) => {
+                if(objectKey === 'message' && (value.length === 0 || typeof(value) !== 'string') ){
+                    throw new TypeError ('El mensaje debe ser texto')
+                }
+                target[objectKey] = value
+                return true
+            },
+        }
+
+        const prox = new Proxy({}, hndlr)
+        // prox.message = 3333
+        // console.log(prox.message)
+
+
+
+
+
+        const targetMDN = {
+          message1: "hello",
+          message2: "everyone"
+        };
+
+        const handler3 = {
+          get: function (target, prop, receiver) {
+            if (prop === "message2") {
+              return "world";
+            }
+            // return Reflect.get(...arguments);
+            return target[prop]
+          },
+        };
+
+        const proxy3 = new Proxy(targetMDN, handler3);
+
+        console.log(proxy3.message1); // hello
+        console.log(proxy3.message2); // world
+
+
+
+    </script>
+</body>
+</html>

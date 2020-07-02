@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Promises</title>
+</head>
+<body>
+    <a href="/ejercicios/">Go back</a>
+
+    <ul>
+      <li><button id="sequence">Get Top Movies in Sequence</button></li>
+      <li><button id="parallel">Get Top Movies in Parallel</button></li>
+      <li><button id="fastest">Get Fastest Top Movie</button></li>
+    </ul>
+
+    <ul id="movies"></ul>
+
+
+    <script>
+        // Ejemplo: renderMovies([{ title: "Spider-Man", release_date: "2019-06-30", poster_path: "/rjbNpRMoVvqHmhmksbokcyCr7wn.jpg" }])
+        // Traducir las funciones de usar thens a usar async/await
+        // Crear función para que no nos gastemos la cantidad de requests demasiado rapido
+        // Crear función donde hacemos requests secuenciales
+        // Crear función donde hacemos requests en paralelo
+        // Crear función donde obtenemos el primer request que llegue
+        
+        // The Movie Database API: https://developers.themoviedb.org/3/getting-started/introduction
+        const apiKey = 'b89fc45c2067cbd33560270639722eae';
+        // const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc`
+        // const url = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&sort_by=popularity.desc`
+        const url = `https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=${apiKey}`;
+        
+        // const url_pelicula = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`
+        // const url_imagen = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`
+
+        async function getPopularMovies(){
+            try{
+                const response = await fetch(url)
+                const movies = await response.json()
+                // console.log(movies.results)
+                return movies.results
+            } catch(err){
+                console.log(err)
+            }          
+        }
+
+        async function getTopMoviesIDs(n = 3){
+            const movies = await getPopularMovies()
+            const ids = movies.slice(0, n).map(movie => movie.id)
+            // console.log(ids)
+            return ids
+        }
+
+        async function getMovie(id){
+            const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${apiKey}&language=en-US`
+            const response = await fetch(url)
+            const movie = await response.json()
+            // console.log(movie)
+            return movie
+        }
+
+        async function getMoviesBySequence(){
+            const ids = await getTopMoviesIDs()
+            const movies = []
+            
+            for(id of ids){
+                const movie = await getMovie(id)
+                movies.push(movie)
+            }
+            // console.log(movies)
+            return movies
+        }
+
+        async function getMoviesInParallel(){
+            // hacer uso de Promise.all()
+            const ids = await getTopMoviesIDs()
+            const promesas = ids.map(id => getMovie(id))
+            const todas = await Promise.all(promesas)
+            // console.log(todas)
+            return todas
+        }
+
+
+
+
+
+
+
+        function renderDOM(movies){
+            // Recibe un Array de películas para pintar en el DOM
+            const moviesDOM = document.getElementById('movies')
+            moviesDOM.innerHTML = ''
+
+            movies.forEach(movie => {
+              let listItem = document.createElement('li')
+              listItem.innerHTML = `
+                <h4>${movie.title}</h4>
+                <div><img src="https://image.tmdb.org/t/p/w500/${movie.poster_path}" alt=""></div>
+              `
+              moviesDOM.appendChild(listItem)
+            })
+            // console.log(movies)
+        }
+
+
+
+
+
+
+        // Botones para pintar resultados
+
+        document.getElementById('sequence').onclick = async function(){
+            const movies = await getMoviesBySequence()
+            // console.log(movies)
+            renderDOM(movies)
+        }
+
+        document.getElementById('parallel').onclick = async function(){
+            const movies = await getMoviesInParallel()
+            renderDOM(movies)
+            // console.log('Botón presionado')
+        }
+        
+    </script>
+</body>
+</html>

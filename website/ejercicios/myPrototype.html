@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi ejercicio Prototype</title>
+</head>
+<body>
+    
+    <script>
+        // un objeto corriente
+
+        // const zelda = {
+        //     name: 'Zelda',
+        // }
+        // zelda.saludar = function(){
+        //     console.log(`Hola soy ${this.name}`)
+        // }
+        // zelda.saludar()
+
+        // const link = {
+        //     name: 'Link',
+        // }
+        // link.saludar = function(){
+        //     console.log(`Hola soy ${this.name}`)
+        // }
+        // link.saludar()
+
+
+
+        //  Seamos un poco más eficientes
+
+        // function Heros(name){
+        //     const hero = {
+        //         nombre : name
+        //     }
+
+        //     hero.saludar = function(){
+        //     console.log(`Hola soy ${this.nombre}`)
+        //     }
+
+        //     return hero
+        // }
+
+        // const zelda = Heros('Zelda')
+        // zelda.saludar()
+
+        // const link = Heros('Link')
+        // link.saludar()
+
+
+
+        //  Se puede mejorar más aún evitando crear la misma función cada vez que se crea una instancia de Heros
+
+        // const herosMethos = {
+        //     saludar: function(){
+        //         console.log(`Hola soy ${this.nombre}`)
+        //     }
+        // }
+
+        // function Heros(name){
+        //     const hero = {
+        //         nombre : name,
+        //         // saludar : herosMethos.saludar
+        //     }
+        //     hero.saludar = herosMethos.saludar  // es lo mismo que ponerlo dentro del objeto hero
+        //     return hero
+        // }
+
+        // const zelda = Heros('Zelda')
+        // zelda.saludar()
+
+        // const link = Heros('Link')
+        // link.saludar()
+
+
+
+        //  Object.create()
+
+        // const herosMethos = {
+        //     saludar: function(){
+        //         console.log(`Soy superheroe! ${this.nombre}`)
+        //     }
+        // }
+
+        // function Heros(name){
+        //     const hero = Object.create(herosMethos)
+        //     hero.nombre = name
+        //     return hero
+        // }
+
+        // const zelda = Heros('Zelda')
+        // zelda.saludar()
+
+        // const link = Heros('Link')
+        // link.saludar()
+
+
+
+
+        // Los métodos de hero dentro de Hero
+        
+        // function Heros(name){
+        //     // const hero = Object.create(herosMethos)
+        //     const hero = Object.create(Heros.prototype)
+        //     hero.nombre = name
+        //     return hero
+        // }
+
+        // //  Esto de abajo reemplaza al Object.create(herosMethos)
+        // Heros.prototype.saludar = function(){
+        //     console.log(`Soy superheroe! ${this.nombre} y puse el prototipo de Hero dentro del objeto de la constante hero`)
+        // }
+        // // const herosMethos = {
+        // //     saludar: function(){
+        // //         console.log(`Soy superheroe! ${this.nombre}`)
+        // //     }
+        // // }
+        // const zelda = Heros('Zelda')
+        // zelda.saludar()
+
+        // const link = Heros('Link')
+        // link.saludar()
+
+
+
+        // new es un atajo (azucar sintactica) para llevar Hero.prototype al objeto que estamos creando
+        
+        function Heros(name){
+            // El keyword new en la instanciación crea el "prototype" y la referencia "this" en el constructor que sería esta función, entonces la línea comentada de abajo es reemplazada y en sería algo como la otra línea de más abajo
+            // const hero = Object.create(Heros.prototype)
+            // this = Object.create(Heros.prototype)
+
+            // Al crearse la referencia "this" ya no hace falta hero.propiedad
+            // hero.nombre = name
+            this.nombre = name
+
+            // También crea la función de retorno, por lo que "return" ya no hey que incluirlo porque ocurre implícitamente
+            // return this
+
+            // ---- Incluir los métodos en el constructor crea la función en todas las instancias haciendolo ineficiente. Agregarlo al "prototype" hace instancias mas livianas que pueden usar el método buscando en la cadena prototipal
+            // this.saludar = function(){
+            //     console.log(`Soy superheroe con "new"! ${this.nombre} `)
+            // }
+        }
+
+        Heros.prototype.saludar = function(){
+            console.log(`Soy superheroe con "new"! ${this.nombre} `)
+        }
+        
+        const zelda = new Heros('Zelda')
+        zelda.saludar()
+
+        const link = new Heros('Link')
+        link.saludar()
+
+
+        
+
+        function Person(first, last, age, gender, interests) {
+          this.name = {
+            'first': first,
+            'last' : last
+          };
+          this.age = age;
+          this.gender = gender;
+          this.interests = interests;
+          this.bio = function() {
+            alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0]      + ' and ' + this.interests[1] + '.');
+          };
+        //   this.greeting = function() {
+        //     alert('Hi! I\'m ' + this.name.first + '.');
+        //   };
+        }
+
+        Person.prototype.greeting = function() {
+            alert('Hi! I\'m ' + this.name.first + '.');
+        };
+        // Person.prototype.age = age
+
+        var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+
+        var person2 = Object.create(person1)
+        person2.age = 21
+
+        let person3 = new person1.constructor('Karen', 'Stephenson', 26, 'female', ['playing drums', 'mountain climbing']);
+
+        Person.prototype.farewell = function() {
+            alert(this.name.first + ' has left the building. Bye for now!');
+        };
+
+        person1.farewell();
+    
+
+        
+        
+    </script>
+</body>
+</html>
