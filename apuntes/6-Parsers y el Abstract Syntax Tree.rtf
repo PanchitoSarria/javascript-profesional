@@ -1,0 +1,99 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red30\green45\blue55;\red191\green191\blue191;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c15294\c23137\c27843;\csgray\c79525;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{none\}}{\leveltext\leveltemplateid1\'00;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}
+{\list\listtemplateid5\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid401\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid5}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}{\listoverride\listid5\listoverridecount0\ls5}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11040\viewh12520\viewkind0
+\deftab720
+\pard\pardeftab720\sl560\sa300\partightenfactor0
+
+\f0\b\fs48 \cf2 \expnd0\expndtw0\kerning0
+Parsers y el Abstract Syntax Tree
+\f1 \
+\pard\pardeftab720\sl360\sa150\partightenfactor0
+
+\f0\b0\fs32 \cf3 El JS Engine recibe el c\'f3digo fuente y lo procesa de la siguiente manera:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\partightenfactor0
+\ls1\ilvl0\cf3 \kerning1\expnd0\expndtw0 		\expnd0\expndtw0\kerning0
+El\'a0
+\b parser
+\b0 \'a0descompone y crea tokens que integran el\'a0
+\b AST
+\b0 .\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 		\expnd0\expndtw0\kerning0
+Se compila a\'a0
+\b bytecode
+\b0 \'a0y se ejecuta.\
+\ls1\ilvl0\kerning1\expnd0\expndtw0 		\expnd0\expndtw0\kerning0
+Lo que se pueda se\'a0
+\b optimiza a machine code
+\b0 \'a0y se reemplaza el c\'f3digo base.\
+\pard\tx566\pardeftab720\sl360\partightenfactor0
+\cf3 \
+\'bfQue hace un JS Engine?\
+\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\partightenfactor0
+\ls2\ilvl0\cf3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Recibe c\'f3digo fuente\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Parsea el c\'f3digo y produce un AST\
+\ls2\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}Se compila a bytecode y se ejecuta\
+{\listtext	\uc0\u8226 	}Se optimiza a machine code y se reemplaza el c\'f3digo base\expnd0\expndtw0\kerning0
+\
+\pard\tx566\pardeftab720\sl360\partightenfactor0
+\cf3 \
+\pard\pardeftab720\sl360\sa150\partightenfactor0
+\cf3 Un\'a0
+\b SyntaxError
+\b0 \'a0es lanzado cuando el motor JavaScript encuentra partes que no forman parte de la sintaxis del lenguaje y esto lo logra gracias a que se tiene un AST generado por el parser.\
+El\'a0
+\i parser
+\i0 \'a0es del 15% al 20% del proceso de ejecuci\'f3n por lo que hay que usar parser del c\'f3digo justo en el momento que lo necesitamos y no antes de saber si se va a usar o no.\
+\
+\pard\pardeftab720\sl360\sa150\partightenfactor0
+
+\b\fs36 \cf3 Hay 2 formas de hacer Parsing (V8)
+\b0\fs32 \
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadl100 \clpadr100 \gaph\cellx4320
+\clvertalc \clshdrawnil \clbrdrt\brdrs\brdrw20\brdrcf4 \clbrdrl\brdrs\brdrw20\brdrcf4 \clbrdrb\brdrs\brdrw20\brdrcf4 \clbrdrr\brdrs\brdrw20\brdrcf4 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl360\sa150\partightenfactor0
+\cf3 Eager Parsing\
+\pard\intbl\itap1\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa150\partightenfactor0
+\ls3\ilvl0\cf3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}Encuentra errores de sintaxis\
+{\listtext	\uc0\u8226 	}Crea el AST\
+{\listtext	\uc0\u8226 	}Construye scopes\expnd0\expndtw0\kerning0
+\cell 
+\pard\intbl\itap1\pardeftab720\sl360\sa150\partightenfactor0
+\cf3 Lazy Parsing\
+\pard\intbl\itap1\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa150\partightenfactor0
+\ls4\ilvl0\cf3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Doble de r\'e1pido que el Eager\
+\ls4\ilvl0\kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}No crea el AST\
+{\listtext	\uc0\u8226 	}Construye los copes parcialmente\expnd0\expndtw0\kerning0
+\cell \lastrow\row
+\pard\pardeftab720\sl360\sa150\partightenfactor0
+\cf3 \
+\
+Abstract Syntact Tree => AST\
+Es un grado (estructura de datos) que representa un programa.\uc0\u8232 Es una estructura que hace que sea mucho m\'e1s f\'e1cil el an\'e1lisis de c\'f3digo, lo usa el motor de javascript para leer el c\'f3digo y transformarlo a bytecode.\
+Se usa en:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa150\partightenfactor0
+\ls5\ilvl0\cf3 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}JavaScript Engine\
+{\listtext	\uc0\u8226 	}Bundlers: Webpack, Rollup, Parcel\
+{\listtext	\uc0\u8226 	}Transpilers: Babel\
+{\listtext	\uc0\u8226 	}Linters: ESLint, Prettify\
+{\listtext	\uc0\u8226 	}Type Checkers: TypeScript, Flow\
+{\listtext	\uc0\u8226 	}Syntax Highlighters\expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\sl360\sa150\partightenfactor0
+\cf3 \
+}
