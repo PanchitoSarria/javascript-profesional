@@ -1,0 +1,91 @@
+<html>
+  <head>
+    <title>Generators</title>
+  </head>
+
+  <body>
+    <a href="/ejercicios/">Go back</a>
+    <p><em>Abre la consola</em></p>
+
+    <script>
+      // Los generadores son funciones de las que se puede salir y volver a entrar.
+      // Su contexto (asociación de variables) será conservado entre las reentradas.
+      // Cada vez que llamamos next, la ejecución del generador va a continuar hasta el proximo yield
+
+      // const gen = simpleGenerator();
+      function* simpleGenerator(){
+        console.log('Generación open')
+        yield 'hola!'
+        console.log('Generación close')
+      }
+      
+      // Podemos hacer generadores infinitos.
+
+      function* infinitGen(){
+        let id = 1
+        while(true){
+          yield id
+          id += 1
+        }
+      }
+
+      // Cuando llamamos next también podemos pasar valores que la función recibe.
+
+
+      function* infinitGenReset(){
+        let id = 1
+        let reset
+        while(true){
+          reset = yield id
+          if(reset){
+            id = 1
+          } else {
+            id = id + 1
+          }
+        }
+      }
+      
+      // Ahora hagamos un ejemplo un poco más complejo: la secuencia fibonacci
+
+      const fibonacci = function* (){
+        let a = 1
+        let b = 1
+        let nextNumber
+        while(true){
+          yield nextNumber = a + b
+          a = b
+          b = nextNumber
+        }
+      }
+
+
+
+
+      function* anotherGenerator(i) {
+        yield i + 1;
+        console.log(i)
+        yield i + 2;
+        console.log(i)
+        yield i + 3;
+        console.log(i + ' no se si se imprime')
+      }
+
+      function* generator(i) {
+        yield i;
+        console.log(i)
+        yield* anotherGenerator(i);
+        console.log(i)
+        yield i + 10;
+      }
+
+      var gen = generator(10);
+
+      console.log(gen.next().value); // 10
+      console.log(gen.next().value); // 11
+      console.log(gen.next().value); // 12
+      console.log(gen.next().value); // 13
+      console.log(gen.next().value); // 20
+      
+    </script>
+  </body>
+</html>

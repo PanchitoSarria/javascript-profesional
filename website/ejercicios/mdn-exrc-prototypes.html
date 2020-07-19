@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicios de MDN - Prototypes</title>
+</head>
+<body>
+    <h1>Ejercicios de MDN - Prototypes</h1>
+    
+    <script>
+        // function Shape(name, sides, sideLength) {
+        //   this.name = name;
+        //   this.sides = sides;
+        //   this.sideLength = sideLength;
+        // }
+
+        // Shape.prototype.calcPerimeter = function(){
+        //     const perimeter = this.sides * this.sideLength
+        //     console.log(perimeter)
+        //     return perimeter
+        // }
+
+        // const square = new Shape('square', 4, 5)
+        // square.calcPerimeter()
+
+        // const triangle = new Shape('triangle', 3, 3)
+        // triangle.calcPerimeter()
+
+
+
+        // ES6 Sintax
+
+        class Shape{
+            constructor(name, sides, sideLength){
+                this.name = name;
+                this.sides = sides;
+                this.sideLength = sideLength;
+            }
+
+            calcPerimeter(){
+                const perimeter = this.sides * this.sideLength
+                console.log(perimeter)
+                return perimeter
+            }
+
+        }
+
+        // const square = new Shape('square', 4, 5)
+        // square.calcPerimeter()
+
+        // const triangle = new Shape('triangle', 3, 3)
+        // triangle.calcPerimeter()
+
+
+        class Square extends Shape{
+            constructor(sideLength){
+                super(sideLength)
+                this.name = 'square'
+                this.sides = 4
+                this.sideLength = sideLength
+            }
+            calcArea(){
+                const area = this.sideLength * this.sideLength
+                console.log(area)
+                return area
+            }
+        }
+
+        const square = new Square(5)
+        square.calcPerimeter()
+        square.calcArea()
+    </script>
+</body>
+</html>

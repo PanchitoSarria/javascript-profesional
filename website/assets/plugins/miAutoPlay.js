@@ -1,12 +1,12 @@
 function AutoPlay(){}
 
-AutoPlay.prototype.run = function(player){
+AutoPlay.prototype.run = function(playerPlugIn){
     // console.log(player)
     // player.mute()
-    if(!player.muted){
-        player.muted = true
+    if(!playerPlugIn.muted){
+        playerPlugIn.muted = true
     } 
-    player.plai()
+    playerPlugIn.plai()
 }
 
 export default AutoPlay

@@ -157,39 +157,102 @@
 
         
 
-        function Person(first, last, age, gender, interests) {
-          this.name = {
-            'first': first,
-            'last' : last
-          };
-          this.age = age;
-          this.gender = gender;
-          this.interests = interests;
-          this.bio = function() {
-            alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0]      + ' and ' + this.interests[1] + '.');
-          };
-        //   this.greeting = function() {
-        //     alert('Hi! I\'m ' + this.name.first + '.');
+
+
+
+
+
+        // function Person(first, last, age, gender, interests) {
+        //   this.name = {
+        //     'first': first,
+        //     'last' : last
         //   };
+        //   this.age = age;
+        //   this.gender = gender;
+        //   this.interests = interests;
+        //   this.bio = function() {
+        //     alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0]      + ' and ' + this.interests[1] + '.');
+        //   };
+        // //   this.greeting = function() {
+        // //     alert('Hi! I\'m ' + this.name.first + '.');
+        // //   };
+        // }
+
+        // Person.prototype.greeting = function() {
+        //     alert('Hi! I\'m ' + this.name.first + '.');
+        // };
+        // // Person.prototype.age = age
+
+        // var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+
+        // var person2 = Object.create(person1)
+        // person2.age = 21
+
+        // let person3 = new person1.constructor('Karen', 'Stephenson', 26, 'female', ['playing drums', 'mountain climbing']);
+
+        // Person.prototype.farewell = function() {
+        //     // alert(this.name.first + ' has left the building. Bye for now!');
+        // };
+
+        // person1.farewell();
+
+
+
+
+
+
+
+
+
+
+
+            
+        // class Person{
+        //     constructor(first, last, age, gender, interests) {
+        function Person(first, last, age, gender, interests) {    
+                this.name = {
+                  'first': first,
+                  'last' : last
+                }
+                this.age = age;
+                this.gender = gender;
+                this.interests = interests;
+            // }
+            // bio() {
+            //    alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years   old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+            // }
         }
 
+        // Person.prototype.bio = function() {
+        //    alert(this.name.first + ' ' + this.name.last + ' is ' + this.age + ' years old. He likes ' + this.interests[0] + ' and ' + this.interests[1] + '.');
+        // }
         Person.prototype.greeting = function() {
-            alert('Hi! I\'m ' + this.name.first + '.');
-        };
-        // Person.prototype.age = age
+           alert('Hi! I\'m ' + this.name.first + '.');
+        }
 
-        var person1 = new Person('Bob', 'Smith', 32, 'male', ['music', 'skiing']);
+        class Dev extends Person {
+            constructor(first,last,age,gender,interests, code){
+                super(first,last,age,gender,interests)
+                this.code = code
+            }
+        }
 
-        var person2 = Object.create(person1)
-        person2.age = 21
+        function Teacher(first, last, age, gender, interests, subject){
+            Person.call(this, first, last, age, gender, interests)
+            this.subject = subject
+        }
 
-        let person3 = new person1.constructor('Karen', 'Stephenson', 26, 'female', ['playing drums', 'mountain climbing']);
+        Teacher.prototype = Object.create(Person.prototype)
+        Object.defineProperty(Teacher.prototype, 'constructor', { 
+            value: Teacher, 
+            enumerable: false, // so that it does not appear in 'for in' loop
+            writable: true
+        });
 
-        Person.prototype.farewell = function() {
-            alert(this.name.first + ' has left the building. Bye for now!');
-        };
 
-        person1.farewell();
+        
+
+
     
 
         

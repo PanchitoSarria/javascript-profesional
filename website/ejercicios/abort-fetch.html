@@ -13,8 +13,8 @@
     <button id="stop" disabled>Stop Fetching</button>
 
     <script>
-      const url =
-        'https://images.pexels.com/photos/974470/nature-stars-milky-way-galaxy-974470.jpeg?q=100';
+      // const url = 'https://images.pexels.com/photos/974470/nature-stars-milky-way-galaxy-974470.jpeg?q=100';
+      const url = 'http://127.0.0.1:8080/ejercicios/images/nature-stars-milky-way-galaxy-974470.jpeg'  
       const img = document.getElementById('huge-image');
       const loadButton = document.getElementById('load');
       const stopButton = document.getElementById('stop');
@@ -37,15 +37,18 @@
 
         controller = new AbortController();
 
+        var myHeaders = new Headers();
+
         try {
-          const response = await fetch(url, { signal: controller.signal });
+          // const response = await fetch(url, { mode: 'no-cors', method: 'GET', headers: myHeaders, signal: controller.signal })
+          const response = await fetch(url, { signal: controller.signal } )
           const blob = await response.blob();
           const imgUrl = URL.createObjectURL(blob);
+          console.log(imgUrl)
           img.src = imgUrl;
         } catch (error) {
           console.log(error.message);
         }
-
         stopLoading();
       };
 

@@ -1,0 +1,176 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561\cocoasubrtf610
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\froman\fcharset0 Times-Roman;\f2\froman\fcharset0 Palatino-Roman;
+\f3\fswiss\fcharset0 ArialMT;\f4\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red30\green45\blue55;\red255\green255\blue255;
+\red0\green0\blue0;\red252\green83\blue8;\red155\green44\blue3;\red38\green38\blue38;\red49\green107\blue136;
+\red57\green57\blue57;\red163\green217\blue121;\red26\green26\blue26;\red212\green212\blue212;\red18\green124\blue224;
+}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c15294\c23137\c27843;\cssrgb\c100000\c100000\c100000;
+\csgray\c0\c0;\cssrgb\c100000\c41713\c26;\cssrgb\c67803\c24280\c0;\cssrgb\c20000\c20000\c20000;\cssrgb\c23922\c49412\c60392;
+\cssrgb\c29020\c29020\c29020;\cssrgb\c69337\c86836\c54718;\csgray\c13536;\cssrgb\c86275\c86275\c86275\c49804;\cssrgb\c2745\c56863\c90196;
+}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww12660\viewh10680\viewkind0
+\deftab720
+\pard\pardeftab720\sl560\sa300\partightenfactor0
+
+\f0\b\fs48 \cf2 \expnd0\expndtw0\kerning0
+Service Workers
+\f1 \
+\pard\pardeftab720\sl360\sa150\partightenfactor0
+
+\f0\b0\fs32 \cf3 Sirven para hacer que nuestras aplicaciones funcionen Offline.\
+Muy usados en las\'a0
+\b Progressive Web Apps
+\b0 \'a0(PWA) los ServiceWorkers son una capa que vive entre el navegador y el Internet.\
+Parecido a como lo hacen los\'a0
+\i proxys
+\i0 \'a0van a interceptar peticiones para guardar el resultado en cache y la pr\'f3xima vez que se haga la petici\'f3n tomar del cache ese resultado.\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\b \cf3 \cb4 Richard B. Kaufman L\'f3pez
+\fs36 \cb5 \
+\pard\pardeftab720\sl420\partightenfactor0
+\cf3 \
+\
+\
+MDN:\
+\
+Service Worker API\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\b0\fs32 \cf6 Los Service workers 
+\b \cf7 \ul \ulc7 act\'faan esencialmente como proxy servers
+\b0 \cf6 \ulnone  asentados entre las aplicaciones web, el navegador y la red (cuando est\'e1 accesible). Est\'e1n destinados, entre otras cosas, a permitir la creaci\'f3n de 
+\b \cf7 \ul \ulc7 experiencias offline
+\b0 \cf6 \ulnone  efectivas, interceptando peticiones de red y realizando la acci\'f3n apropiada si la conexi\'f3n de red est\'e1 disponible y hay disponibles contenidos actualizados en el servidor. Tambi\'e9n permitir\'e1n el acceso a notificaciones tipo push y APIs de sincronizaci\'f3n en segundo plano.\cf3 \
+\
+\
+\pard\pardeftab720\sl660\sa400\partightenfactor0
+
+\b\fs36 \cf8 \cb4 \outl0\strokewidth0 \strokec8 Conceptos y uso de Service worker
+\f2\fs56 \
+\pard\pardeftab720\sl360\sa480\partightenfactor0
+
+\f3\b0\fs32 \cf8 Un service worker es un worker\'a0\ul manejado por eventos registrado para una fuente y una ruta.\ulnone  Consiste en un fichero JavaScript que controla la p\'e1gina web (o el sitio) con el que est\'e1 asociado, interceptando y modificando la navegaci\'f3n y las peticiones de recursos, y cacheando los recursos de manera muy granular para ofrecer un control completo sobre c\'f3mo la aplicaci\'f3n debe comportarse en ciertas situaciones (la mas obvia es cuando la red no est\'e1 disponible).\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 Un service worker se ejecuta en un contexto worker: por lo tanto 
+\b \ul no tiene acceso al DOM
+\b0 \ulnone ,
+\b \ul  y se ejecuta en un hilo distinto al JavaScript principal de la aplicaci\'f3n
+\b0 \ulnone , de manera que 
+\b \ul no es bloqueante
+\b0 \ulnone . Est\'e1 dise\'f1ado para ser 
+\b \ul completamente as\'edncrono
+\b0 \ulnone , por lo que APIs como el\'a0{\field{\*\fldinst{HYPERLINK "https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest"}}{\fldrslt \cf9 \strokec9 XHR}}\'a0as\'edncrono y\'a0{\field{\*\fldinst{HYPERLINK "https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage"}}{\fldrslt \cf9 \strokec9 localStorage}}\'a0no se pueden usar dentro de un service worker.\
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f0 \cf3 \cb5 \outl0\strokewidth0 \
+\pard\pardeftab720\sl360\partightenfactor0
+
+\f3 \cf8 \cb4 \outl0\strokewidth0 \strokec8 Los service workers 
+\b \ul solo funcionan sobre HTTPS
+\b0 \ulnone , por razones de seguridad. Modificar las peticiones de red en abierto permitir\'eda ataques man in the middle realmente peligrosos. En Firefox, las APIs de service worker se ocultan y no pueden ser empleadas cuando el usuario est\'e1 en\'a0{\field{\*\fldinst{HYPERLINK "https://support.mozilla.org/en-US/kb/private-browsing-use-firefox-without-history"}}{\fldrslt \cf9 \strokec9 modo de navegaci\'f3n en privado}}.
+\f0 \cf10 \cb5 \outl0\strokewidth0 \
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \
+\pard\pardeftab720\sl340\partightenfactor0
+
+\b \cf8 \cb11 \outl0\strokewidth0 \strokec8 Nota
+\b0 : Los Service workers 
+\b \ul hace un uso intensivo de las\ulnone \'a0{\field{\*\fldinst{HYPERLINK "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"}}{\fldrslt \cf9 \strokec9 promesas}},
+\b0  por lo que generalmente esperar\'e1n a que lleguen las respuestas correspondientes, tras lo cual responder\'e1n con una acci\'f3n de \'e9xito o de fracaso. La arquitectura de promesas es ideal en este caso.\
+\cb5 \
+\
+\pard\pardeftab720\sl420\partightenfactor0
+
+\b\fs36 \cf12 \strokec4 Registro
+\f2\b0\fs34\fsmilli17333 \cf4 \
+\pard\pardeftab720\sl360\sa480\partightenfactor0
+
+\f3\fs32 \cf8 \cb4 \strokec8 Un service worker se registra primero mediante el m\'e9todo\'a0{\field{\*\fldinst{HYPERLINK "https://developer.mozilla.org/es/docs/Web/API/ServiceWorkerContainer/register"}}{\fldrslt 
+\f4 \cf9 \cb13 \strokec9 ServiceWorkerContainer.register()}}. Si ha habido \'e9xito, el\'a0service worker se descargar\'e1 al cliente e intentar\'e1 la instalaci\'f3n/activaci\'f3n (ver m\'e1s abajo) de las URLs accedidas por el usuario dentro de todo su origen de datos, o dentro de alg\'fan subconjunto especificado por el autor.\
+\pard\pardeftab720\sl420\partightenfactor0
+
+\f0\b\fs36 \cf12 \cb5 \strokec4 Descarga, instalaci\'f3n y activaci\'f3n\
+\pard\pardeftab720\sl360\sa480\partightenfactor0
+
+\f3\b0\fs32 \cf8 \cb4 \strokec8 En este punto, su service worker observar\'e1 el siguiente ciclo de vida:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa120\partightenfactor0
+\ls1\ilvl0\cf8 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	1.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Descarga\cb1 \
+\ls1\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	2.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Instalaci\'f3n\cb1 \
+\ls1\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	3.	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Activaci\'f3n\cb1 \
+\pard\pardeftab720\sl340\partightenfactor0
+
+\f0 \cf10 \cb5 \outl0\strokewidth0 \
+\
+\pard\pardeftab720\sl660\sa400\partightenfactor0
+
+\b\fs36 \cf8 \cb4 \outl0\strokewidth0 \strokec8 Otras posibilidades
+\f2\fs56 \
+\pard\pardeftab720\sl360\sa480\partightenfactor0
+
+\f3\b0\fs32 \cf8 Los service workers tambi\'e9n pueden usarse para cosas como:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa120\partightenfactor0
+\ls2\ilvl0\cf8 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Sincronizaci\'f3n de datos en background\cb1 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Responder a peticiones de recursos desde otros or\'edgenes\cb1 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Recibir actualizaciones centralizadas de datos costosos de calcular tales como geolocalizaci\'f3n o giroscopio, de manera que muchas p\'e1ginas puedan hacer uso de un mismo conjunto de datos\cb1 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Compilaci\'f3n Client-side y gesti\'f3n de dependencias de\'a0CoffeeScript, less, CJS/AMD modules, etc. para desarrollo\cb1 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Enlace para servicios en background\'a0\cb1 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Plantillas personalizadas basadas en ciertos patrones URL\'a0\cb1 \
+\ls2\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Mejoras de rendimiento, por ejemplo pre-fetching de recursos que es probable que el usuario requiera en un futuro pr\'f3ximo, como las pr\'f3ximas im\'e1genes\'a0de un album de fotos.\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf8 \
+En el futuro\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa120\partightenfactor0
+\ls3\ilvl0\cf9 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://github.com/slightlyoff/BackgroundSync"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 Sincronizaci\'f3n en background}}\cf8 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 : Pone en marcha un service worker aunque el usuario no est\'e9 en el sitio de manera que las cach\'e9s se puedan actualizar, etc.\cb1 \
+\ls3\ilvl0\cf9 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}{\field{\*\fldinst{HYPERLINK "https://developer.mozilla.org/en-US/docs/Web/API/Push_API"}}{\fldrslt \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec9 Reacci\'f3n a mensajes tipo push}}\cf8 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 : Pone en marcha un service worker para enviar a los usuarios un mensaje para notificarles de que hay disponible nuevos contenidos.\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sl360\sa120\partightenfactor0
+\ls3\ilvl0\cf8 \cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Reacci\'f3n ante una fecha y hora determinados.\cb1 \
+\ls3\ilvl0\cb4 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec8 Creaci\'f3n de geo-fronteras\cb1 \
+\pard\tx566\pardeftab720\sl360\sa120\partightenfactor0
+\cf8 \
+\pard\pardeftab720\sl340\partightenfactor0
+
+\f0 \cf10 \cb5 \outl0\strokewidth0 \
+\
+\
+\
+\pard\pardeftab720\sl360\partightenfactor0
+\cf10 \
+\
+\
+\
+\
+Este es un curso en\'a0
+\b \ul YouTube
+\b0 \ulnone \'a0de\'a0
+\b \ul PWA
+\b0 \ulnone \'a0y\'a0
+\b \ul Service Workers
+\b0 \ulnone \'a0en espa\'f1ol que extiende los conceptos aqu\'ed planteados as\'ed como introduce nuevos y detalles importantes.\
+
+\b ULTRA RECOMENDADO!
+\b0 \
+{\field{\*\fldinst{HYPERLINK "https://platzi.com/clases/1642-javascript-profesional/22177-service-workers/url"}}{\fldrslt \cf14 https://youtu.be/ttwwOecPS10}}\cf14 \
+
+\fs24 \cf0 \kerning1\expnd0\expndtw0 https://youtu.be/aUtWHiV3RJg}

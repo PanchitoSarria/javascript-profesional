@@ -8,6 +8,50 @@
     <p><em>Abre la consola</em></p>
 
     <script>
+
+      function contador(n){
+        let numInicial = n
+
+        return {
+          increase: function(){
+            return numInicial ++
+          },
+          decrease: function(){
+            return numInicial --
+          },
+          getCount: function(){
+            return numInicial
+          }
+
+        }
+      }
+
+      const contFunc = contador(7)
+
+      contFunc.increase()
+      console.log(contFunc.getCount())
+      contFunc.increase()
+      contFunc.increase()
+      contFunc.increase()
+      contFunc.increase()
+      console.log(contFunc.getCount())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       // Closures
       // printColor
 
@@ -42,35 +86,35 @@
       // counter.count = 99;
       // console.log(counter.count);
 
-      function makeCounter(n) {
-        let count = n;
+      // function makeCounter(n) {
+      //   let count = n;
 
-        return {
-          increase: function() {
-            count = count + 1;
-          },
-          decrease: function() {
-            count = count - 1;
-          },
-          getCount: function() {
-            return count;
-          },
-        };
-      }
+      //   return {
+      //     increase: function() {
+      //       count = count + 1;
+      //     },
+      //     decrease: function() {
+      //       count = count - 1;
+      //     },
+      //     getCount: function() {
+      //       return count;
+      //     },
+      //   };
+      // }
 
-      let counter = makeCounter(7);
+      // let counter = makeCounter(7);
 
-      console.log('The count is:', counter.getCount());
-      counter.increase();
-      console.log('The count is:', counter.getCount());
-      counter.decrease();
-      counter.decrease();
-      counter.decrease();
-      counter.decrease();
-      console.log('The count is:', counter.getCount());
+      // console.log('The count is:', counter.getCount());
+      // counter.increase();
+      // console.log('The count is:', counter.getCount());
+      // counter.decrease();
+      // counter.decrease();
+      // counter.decrease();
+      // counter.decrease();
+      // console.log('The count is:', counter.getCount());
 
-      counter.count = 0;
-      console.log('The count is:', counter.getCount());
+      // counter.count = 0;
+      // console.log('The count is:', counter.getCount());
     </script>
   </body>
 </html>

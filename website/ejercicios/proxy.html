@@ -170,6 +170,25 @@
     console.log(Tesla.year);  // 2016
 
 
+
+    // interceptando propiedades con las API Proxy y Reflect
+    var pioneer = new Proxy({}, {
+      get: function(target, name, receiver) {
+          console.log(`ejecutado "get" para propiedad: ${name}`);
+          return Reflect.get(target, name, receiver);
+      },
+    
+      set: function(target, name, value, receiver) {
+          console.log(`ejecutado "set" para propiedad: ${name} y valor: ${value}`);
+          return Reflect.set(target, name, value, receiver);
+      }
+    });
+
+    pioneer.firstName = 'Grace';
+    pioneer.secondName = 'Hopper';
+    pioneer.firstName
+
+
     </script>
   </body>
 </html>
